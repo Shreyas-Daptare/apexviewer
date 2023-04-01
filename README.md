@@ -24,8 +24,8 @@
 
 ## Core
 
-                                Programming language used - JAVA
-                                 Version- java 19.0.2 2023-01-17
+                                			Programming language used - JAVA
+                                 			 Version- java 19.0.2 2023-01-17
 						Java(TM) SE Runtime Environment (build 19.0.2+7-44)
 
 ___Made by [@Shreyas-Daptare](https://www.github.com/Shreyas-Daptare)___
