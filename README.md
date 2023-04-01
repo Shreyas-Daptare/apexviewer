@@ -1,5 +1,5 @@
 
-                     APEXVIEWER - AppletViewer that Works with Newer Versions of JDK
+                     			APEXVIEWER - AppletViewer that Works with Newer Versions of JDK
 # Description
 
 -> The apexviewer is a Java application designed to view and run Java applets.
