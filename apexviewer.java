@@ -10,6 +10,10 @@ import java.net.URL;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.JOptionPane;
+import java.net.URL;
+import java.net.URLClassLoader;
+
 
 public class apexviewer extends JFrame implements ActionListener {
 
@@ -19,7 +23,7 @@ public class apexviewer extends JFrame implements ActionListener {
 
     public apexviewer() {
         super("Applet Viewer");
-        setSize(400, 400);
+        setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
@@ -42,20 +46,43 @@ public class apexviewer extends JFrame implements ActionListener {
                 File file = fileChooser.getSelectedFile();
                 try {
                     URL url = file.toURI().toURL();
-                    applet = (Applet) Class.forName(file.getName().split("\\.")[0]).newInstance();
+                    String className = file.getName().split("\\.")[0];
+                    ClassLoader classLoader = new URLClassLoader(new URL[] {url});
+                    applet = (Applet) classLoader.loadClass(className).newInstance();
                     add(applet, BorderLayout.CENTER);
                     validate();
                     applet.init();
                     applet.start();
                 } catch (Exception ex) {
                     ex.printStackTrace();
+                    JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
     }
-    // Main method to create an instance of the AppletViewer
+
     public static void main(String[] args) {
-        new apexviewer();
+        if (args.length == 0) {
+            System.out.println("Usage: java apexviewer [file_name]");
+            return;
+        }
+        new apexviewer(args[0]);
+    }
+
+    public apexviewer(String fileName) {
+        this();
+        try {
+            File file = new File(fileName);
+            URL url = file.toURI().toURL();
+            applet = (Applet) Class.forName(file.getName().split("\\.")[0]).newInstance();
+            add(applet, BorderLayout.CENTER);
+            validate();
+            applet.init();
+            applet.start();
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "Class not found: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Exception occurred: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
-
