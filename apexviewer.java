@@ -1,3 +1,6 @@
+//-MADE WITH Little Programming Knowledge and Help from Internet
+//-By ZINCop
+// Modern Problems Require Modern Solutions
 import java.applet.Applet;
 import java.awt.BorderLayout;
 import java.awt.Button;
@@ -63,18 +66,19 @@ public class apexviewer extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         if (args.length == 0) {
-            System.out.println("Usage: java apexviewer [file_name]");
+            System.out.println("Usage: java apexviewer [class_location]");
             return;
         }
         new apexviewer(args[0]);
     }
 
-    public apexviewer(String fileName) {
+    public apexviewer(String classLocation) {
         this();
         try {
-            File file = new File(fileName);
+            File file = new File(classLocation);
             URL url = file.toURI().toURL();
-            applet = (Applet) Class.forName(file.getName().split("\\.")[0]).newInstance();
+            ClassLoader classLoader = new URLClassLoader(new URL[] {url});
+            applet = (Applet) classLoader.loadClass(file.getName().split("\\.")[0]).newInstance();
             add(applet, BorderLayout.CENTER);
             validate();
             applet.init();
