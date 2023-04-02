@@ -71,6 +71,12 @@ _->Go to the extracted folder_
 
 ## __To Run Apex Viewer__
 
+_>First Compile the apexviewer.java file using javac_
+
+	javac apexviewer.java
+	
+_>You will get an apexviewer.class file after compilation_
+
 _>Copy the apexviewer.class file and paste it into same folder as the Applet Program you are going to run_
 _> OR Copy the applet program class file to the location where you have appletviewer's class file_
 _>Either way you do the apexviewer.class file and your_applet_program.class file should be in same folder_
