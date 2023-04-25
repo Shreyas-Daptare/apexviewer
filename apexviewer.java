@@ -21,7 +21,7 @@ public class apexviewer extends JFrame {
 
     // Constructor
     public apexviewer(String classLocation) {
-        super("Applet Viewer"); // Set window title
+        super("Apex Viewer"); // Set window title
         setSize(800, 600); // Set window size
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Set default close operation
         setLayout(new BorderLayout()); // Set layout of window
